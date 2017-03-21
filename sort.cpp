@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <stdio.h>
 
 void printArray(const std::vector<int> &);
 void insertionSort(std::vector<int> &);
@@ -14,21 +15,31 @@ void quickSort(std::vector<int> &, int, int);
 
 int main()
 {
-    size_t vectorSize;    
+    int vectorSize;    
     while (true)
     {        
-        std::cin >> vectorSize;
+        //std::cin >> vectorSize;
+        scanf("%d", &vectorSize);
         std::vector<int> vectorToSort(vectorSize);
         if (vectorSize == 0) break;
         for (int i = 0; i < vectorSize; i++)
         {
-            std::cin >> vectorToSort[i];
+            //std::cin >> vectorToSort[i];
+            scanf("%d", &vectorToSort[i]);
         }
         //insertionSort(vectorToSort);
         //mergeSort(vectorToSort);
         heapSort(vectorToSort);
         //quickSort(vectorToSort, 0, vectorSize - 1);
-        printArray(vectorToSort);
+        //copy(vectorToSort.begin(), vectorToSort.end(), std::ostream_iterator<int>(std::cout, " "));
+        //printArray(vectorToSort);
+        for (int item : vectorToSort)
+        {        
+            //std::cout << item << " ";        
+            printf("%d ", item);
+        }
+        //std::cout << std::endl;
+        printf("\n");
     }            
 }
 
@@ -193,10 +204,10 @@ void quickSort(std::vector<int> & aVector, int aLeft, int aRight)
 }
 
 void printArray(const std::vector<int> & aVector)
-{
+{    
     for (int item : aVector)
-    {
-        std::cout << item << " ";
+    {        
+        std::cout << item << " ";        
     }
     std::cout << std::endl;        
 }
