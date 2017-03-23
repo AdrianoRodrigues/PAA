@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <vector>
+#include <iostream>
 #include <stdio.h>
 
 void countsort(std::vector<int> &, int);
@@ -21,8 +22,8 @@ int main()
             scanf("%d",  &mVector[i]);
         }
         
-        // Apply count sort
-        countsort(mVector);
+        // Apply radix sort
+        radixsort(mVector);
 
         // print
         printVector(mVector);
@@ -31,7 +32,7 @@ int main()
 
 void countsort(std::vector<int> & aV, int aExp)
 {
-	int maxValue = 9;	
+	int maxValue = 9;		
 	
 	// Initialize a C vector of 0..maxValue
 	std::vector<int> C(maxValue + 1);		
@@ -39,7 +40,7 @@ void countsort(std::vector<int> & aV, int aExp)
 	// Counting
 	for (int i = 0; i < aV.size(); i++)
 	{
-		C[aV[i]]++;		
+		C[(aV[i] / aExp) % 10]++;		
 	}	
 
 	// Sort
@@ -58,11 +59,26 @@ void countsort(std::vector<int> & aV, int aExp)
 void radixsort(std::vector<int> & aV)
 {
 	auto maxElement = std::max_element(aV.begin(), aV.end());
-	int maxValue = *maxElement;
+	int maxValue = *maxElement;	
 
 	for (int exp = 1; maxValue/exp > 0; exp *= 10) 
 	{	    
-		countSort(aV, exp);
+		std::vector<std::vector<int> > buckets(10);
+		
+		for (int i : aV)
+		{
+			buckets[(i / exp) % 10].push_back(i);		
+		}
+
+		int j = 0;		
+		for (auto it = buckets.begin(); it != buckets.end(); ++it)
+		{			
+			for (int i : *it)
+			{		
+				aV[j] = i;				
+				j++;
+			}
+		}
 	}
 }
 
