@@ -18,42 +18,11 @@ int main()
         
         std::vector<int> mVector(mVecSize);        
         for (int i = 0; i < mVecSize; i++)
-        {            
             scanf("%d",  &mVector[i]);
-        }
-        
-        // Apply radix sort
-        radixsort(mVector);
-
-        // print
-        printVector(mVector);
+                
+        radixsort(mVector); // Apply radix sort        
+        printVector(mVector); // print vector
     }            
-}
-
-void countsort(std::vector<int> & aV, int aExp)
-{
-	int maxValue = 9;		
-	
-	// Initialize a C vector of 0..maxValue
-	std::vector<int> C(maxValue + 1);		
-
-	// Counting
-	for (int i = 0; i < aV.size(); i++)
-	{
-		C[(aV[i] / aExp) % 10]++;		
-	}	
-
-	// Sort
-	int j = 0;
-	for (int i = 0; i <= maxValue; i++)
-	{
-		while (C[i] > 0)
-		{
-			aV[j] = i;
-			j++;
-			C[i]--;
-		}
-	}	
 }
 
 void radixsort(std::vector<int> & aV)
@@ -66,9 +35,7 @@ void radixsort(std::vector<int> & aV)
 		std::vector<std::vector<int> > buckets(10);
 		
 		for (int i : aV)
-		{
 			buckets[(i / exp) % 10].push_back(i);		
-		}
 
 		int j = 0;		
 		for (auto it = buckets.begin(); it != buckets.end(); ++it)
@@ -83,11 +50,8 @@ void radixsort(std::vector<int> & aV)
 }
 
 void printVector(std::vector<int> & aV)
-{
-	// Print vector
-    for (int i : aV)
-    {                    
+{	
+    for (int i : aV)    
         printf("%d ", i);
-    }        
     printf("\n");
 }
