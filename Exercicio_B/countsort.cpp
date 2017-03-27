@@ -30,8 +30,9 @@ int main()
 
 void countsort(std::vector<int> & aV)
 {
-	auto maxElement = std::max_element(aV.begin(), aV.end());
-	int maxValue = *maxElement;
+	//auto maxElement = std::max_element(aV.begin(), aV.end());
+	//int maxValue = *maxElement;
+	int maxValue = 999;
 
 	// Initialize a C vector of 0..maxValue
 	std::vector<int> C(maxValue + 1);	
