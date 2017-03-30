@@ -1,0 +1,22 @@
+
+Nome da Tarefa:
+Exercício C - mochila 0-1
+Descrição:
+
+O arquivo em anexo possui 3 exemplos de entrada para o problema da mochila.
+
+O primeiro tem como saída ótima 309 (kp01.txt), o segundo tem a saída 13549094 (kp02.txt), o terceiro tem a saída 2909 (kp03.txt).
+
+O formato de entrada inicia com uma linha informando a capacidade da mochila W (abaixo é 165). A segunda linha possui o número de objetos N na mochila (abaixo é 2). Depois seguem N linhas com os pesos dos N objetos (no exemplo abaixo, o primeiro objeto pesa 23 e o segundo 31). Para finalizar, seguem N linhas com os valores dos N objetos (no exemplo abaixo, o primeiro objeto vale 92 e o segundo objeto vale 57).
+
+Vocês devem enviar uma tabela (um print ou um txt, por favor) com os tempos dos três casos de teste (kp01.txt, kp02.txt, kp03.txt) tanto usando a versão do slide quanto sua versão melhorada. Em outros termos, espero seu código fonte melhorado e uma tabela com os 6 tempos, cada um dos 3 casos nas duas versões.
+
+
+Exemplo de entrada
+
+165
+2
+23
+31
+92
+57
