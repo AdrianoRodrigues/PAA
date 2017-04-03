@@ -13,18 +13,24 @@ struct KPItem
     }
 };
 
-long knapsack(long W, const std::vector<KPItem> & V, int i)
+long knapsack_improved(long W, const std::vector<KPItem> & V, int n)
 {
-    if (i >= V.size())
-        return 0;
-    long best = knapsack(W, V, i+1);
-    if (V[i].weight <= W)
+    long M[n+1][W+1];
+
+    for (int i = 0; i <= n; i++)
     {
-        long aux = knapsack(W-V[i].weight, V, i+1) + V[i].value;
-        if (aux > best)
-            best = aux;
+        for (int w = 0; w <= W; w++)
+        {
+            if (i == 0 || w == 0) 
+                M[i][w] = 0;
+            else if (V[i].weight <= w)
+                M[i][w] = std::max(V[i].value + M[i-1][w-V[i].weight], M[i-1][w]);
+            else
+                M[i][w] = M[i-1][w];
+        }
     }
-    return best;
+
+    return M[n][W];
 }
 
 int main() 
@@ -48,6 +54,6 @@ int main()
         V.push_back(item);
     }
     std::sort(V.begin(), V.end());
-    long best = knapsack(W, V, 0);
+    long best = knapsack_improved(W, V, V.size() - 1);
     printf("\nbest = %d\n\n", best);    
 }
