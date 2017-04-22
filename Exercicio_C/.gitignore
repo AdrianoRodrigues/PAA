@@ -3,3 +3,6 @@ results/
 input/
 kp*.txt
 A_input.txt
+*.png
+*.xls
+*.zip
