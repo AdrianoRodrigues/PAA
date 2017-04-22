@@ -9,9 +9,14 @@ struct KPItem
 
     bool operator< (const KPItem & other) const
     {
-        return value < other.value;
+        return (value / weight) < (other.value / other.weight);
     }
 };
+
+bool greater(const KPItem & item1, const KPItem & item2)
+{
+    return (item1.value / item1.weight) > (item2.value / item2.weight);
+}
 
 long knapsack(long W, const std::vector<KPItem> & V, int i)
 {
@@ -45,9 +50,9 @@ int main()
     for (int i = 0; i < L; i++)
     {
         KPItem item = { aux[i], aux[i+L] };
-        V.push_back(item);
+        V[i] = item;
     }
-    std::sort(V.begin(), V.end());
+    std::sort(V.begin(), V.end(), greater);
     long best = knapsack(W, V, 0);
-    printf("\nbest = %d\n\n", best);    
+    printf("\nbest = %ld\n\n", best);    
 }
