@@ -1,6 +1,6 @@
-#include <stdio.h> 
+#include <cstdio> 
 
-int v[13];
+int v[4];
 int n, p, r; 
 
 int checa() {
@@ -38,7 +38,7 @@ unsigned long q(int index) {
     unsigned long sum = 0;
     for(int i=1; i<=n; i++) {
         int hasI = 0;
-        for(int j=0; j<index; j++) {
+        for(int j=0; j<=index; j++) {
             if(v[j]==i) {
                 hasI=1;
                 break;
@@ -52,16 +52,23 @@ unsigned long q(int index) {
     return sum;
 }
 
+/*
 unsigned long bt( ??? ) {
     ????
 }
+*/
 
 int main() {
     int t;
     scanf("%d", &t);
     while(t--) {
         scanf("%d%d%d", &n, &p, &r);
-        //printf("%ld\n", q(0));
-        printf("%ld\n", bt(n, p, r));
+        printf("%ld\n", q(0));
+
+        for (int i = 0; i < 4; i++) {
+            printf("%d ", v[i]);
+        }
+
+        //printf("%ld\n", bt(n, p, r));
     }
 }
