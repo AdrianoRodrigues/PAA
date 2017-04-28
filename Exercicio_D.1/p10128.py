@@ -9,7 +9,16 @@ def verify_big(v, n, p, r):
         print('index: {}, v: {}'.format( v.index(n), v))
         return False
     
-    return True    
+    return True
+
+def get_bigger_pos(v, n, p, r):
+    pos = [p-1]
+    if p == r:
+        pos.append(n - r)
+    elif p > r:
+        pos = [n - r]
+
+    return pos
 
 def verify_bigger(v, n, p, r):
     pos = [p-1]
@@ -74,8 +83,12 @@ def permutation(v, n, p, r, index, s):
             bigger_in_position = True
             #if v[i] == n and p != r and not verify_bigger(v, n, p, r):
             #    bigger_in_position = False
-            #if not verify_big(v, n, p, r):
+            #print(v)
+            #if v[index] == n and n not in get_bigger_pos(v, n, p, r): 
+                #verify_big(v, n, p, r):
             #    bigger_in_position = False
+                #pass
+                #print('big: ', v)
 
             if bigger_in_position:
                 s[i] = True
@@ -86,18 +99,18 @@ infile = sys.stdin
 nbr_dataset = int(infile.readline().strip())
 
 for i in range(nbr_dataset):
-    global solutions
     solutions = []
     line = [int(i) for i in infile.readline().strip().split()]    
     N = line[0]
     P = line[1]
     R = line[2]
     V = [0] * N        
-    S = [False] * N
+    S = [False] * N    
+    
     permutation(V, N, P, R, 0, S)
 
-    print(len(solutions))
-    #count = 1
-    #for sol in solutions:
-    #    print('{}: {}'.format(count, sol))
-    #    count+=1
+    print('{} Case: {} {} {}'.format(len(solutions), N, P, R))
+    count = 1
+    for sol in solutions:
+        print('    {}: {}'.format(count, sol))
+        count+=1
