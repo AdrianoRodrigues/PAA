@@ -53,6 +53,8 @@ next(infile) # skip first line of input file
 dataset = 0
 for line in infile:
     if line.strip():
+        if dataset > 0:
+            print('')
         print('SOLN       COLUMN')
         print(' #      1 2 3 4 5 6 7 8')
         param = [int(i) for i in line.split()]
@@ -64,9 +66,7 @@ for line in infile:
                 solstr = solstr.strip()
                 print('{:>2}      {}'.format(count, solstr))
                 count += 1
-        dataset += 1
-        if dataset <= d:        
-            print('\n')
+        dataset += 1                
             #print(param)
             #cnt += 1
 
